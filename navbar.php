@@ -1,8 +1,8 @@
 <div class="topnav" id="myTopnav">
 <div class="container">
-  <a href="#home" class="active">Home</a>
-  <a href="#news">News</a>
-  <a href="#contact">Contact</a>
+  <a href="index.php" class="active">Strona główna</a>
+  <a href="order.php">Zamówienia</a>
+  <a href="#contact">Kontakt</a>
   <a href="#" onclick="to_cart()" style="float:right;" id="cart">Koszyk</a>
   </div>
 </div>

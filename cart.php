@@ -24,6 +24,7 @@ while($row = mysqli_fetch_array($result_ordered)){
 
 $sum_price = 0;
 
+
 ?>
 
 <!DOCTYPE html>
@@ -40,6 +41,12 @@ $sum_price = 0;
 <?php include('navbar.php'); ?>
 
 <div class="container" style="margin-top: 100px;">
+
+    <?php if (isset($_SESSION['db_error'])){ ?>
+        <div class="alert alert-danger" role="alert">
+            <b>Wystąpił błąd: </b> <?php echo $_SESSION['db_error'] ?>
+        </div>
+    <?php } ?>
 
     <div class="card">
         <h5 class="card-header">
@@ -59,7 +66,7 @@ $sum_price = 0;
                     <?php foreach($products as $key => $product){ ?>
                     <?php if ($product['id'] == $selected_item){ ?>
                     <tr>
-                        <td>1</td>
+                        <td><?php echo $key ?></td>
                         <td><?php echo $product['name'] ?></td>
                         <td><?php echo $product['price'] ?></td>
                         <?php 
@@ -84,30 +91,29 @@ $sum_price = 0;
             Dane zamawiającego
         </h5>
         <div class="card-body">
-        <form class="row g-3" action="/Catering/order.php" method="POST">
+        <form class="row g-3" action="/Catering/add_order.php" method="POST">
             <div class="col-md-6">
                 <label for="inputEmail4" class="form-label">Email</label>
-                <input type="email" class="form-control" id="inputEmail4">
+                <input name="email" type="email" class="form-control" id="inputEmail4" required>
             </div>
             <div class="col-md-6">
                 <label for="inputPassword4" class="form-label">Imie i nazwisko</label>
-                <input type="text" class="form-control">
+                <input name="name" type="text" class="form-control" required>
             </div>
 
             <div class="col-12">
                 <label for="inputAddress2" class="form-label">Adres</label>
-                <input type="text" class="form-control" id="inputAddress2" placeholder="Ulica, numer ulicy & numer domu">
+                <input name="address" type="text" class="form-control" id="inputAddress2" placeholder="Ulica, numer ulicy & numer domu" required>
             </div>
             <div class="col-md-6">
                 <label for="inputCity" class="form-label">Miasto</label>
-                <input type="text" class="form-control" id="inputCity">
+                <input name="city" type="text" class="form-control" id="inputCity" required>
             </div>
 
             <div class="col-md-2">
                 <label for="inputZip" class="form-label">K. pocztowy</label>
-                <input type="text" class="form-control" id="inputZip">
+                <input name="postal_code" type="text" class="form-control" id="inputZip" placeholder="xx-xxx" required>
             </div>
-
             <div class="col-12">
                 <button type="submit" class="btn btn-primary">Złóż zamówienie</button>
             </div>
