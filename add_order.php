@@ -12,7 +12,6 @@ echo $_POST['postal_code'].'<br>';
 $conn = mysqli_connect('localhost', 'root', '', 'catering');
 
 
-
 if ($conn->connect_error){
     die("Problem z połączeniem bazy danych: ".$conn->connect_error);
 }

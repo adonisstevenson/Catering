@@ -2,6 +2,10 @@
 
 session_start();
 
+if (!isset($_SESSION['user_id'])){
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
+}
+
 $conn = mysqli_connect('localhost', 'root', '', 'catering');
 
 if($conn->connect_error){
@@ -22,8 +26,7 @@ $current_time = time();
 
 
 $q_data = "SELECT * FROM Klienci as KL 
-JOIN Koszyki AS KO ON KL.id = KO.user_id
-JOIN Zamowienia AS Z ON Z.cart_id = KO.id";
+WHERE id = '{$_SESSION['user_id']}'";
 
 $result = $conn->query($q_data);
 
@@ -33,12 +36,14 @@ while($row = mysqli_fetch_array($result)){
     $client_data[] = $row;
 }
 
+var_dump($client_data[0]);
+
 $q = "SELECT P.name, P.img_src, P.price, Z.delivery_date FROM Koszyki as KO
-JOIN Klienci AS KL on KL.id = KO.user_id,
+JOIN Klienci AS KL on KL.id = KO.user_id
 JOIN koszyk_produkt AS KP ON KP.cart_id = KO.id
 JOIN Potrawy as P on P.id = KP.dish_id
 JOIN Zamowienia AS Z ON Z.cart_id = KO.id
-WHERE KL.id = '{$_SESSION['user_id']}'";
+WHERE KL.id = {$_SESSION['user_id']}";
 
 $result = $conn->query($q);
 
@@ -48,7 +53,6 @@ while($row = mysqli_fetch_array($result)){
     $ordered[] = $row;
 }
 
-var_dump($ordered);
 
 ?>
 
@@ -76,11 +80,11 @@ var_dump($ordered);
                 <legend>Dane zamawiającego</legend>
                 <div class="col-md-6">
                     <label for="inputEmail4" class="form-label">Email</label>
-                    <input type="text" class="form-control" id="disabledTextInput">
+                    <input type="text" class="form-control" id="disabledTextInput" value=<?php echo $client_data[0]['email']; ?>>
                 </div>
                 <div class="col-md-6">
                     <label for="inputPassword4" class="form-label">Imie i nazwisko</label>
-                    <input type="text" class="form-control" id="disabledTextInput">
+                    <input type="text" class="form-control" id="disabledTextInput" value=>
                 </div>
 
                 <div class="col-12">
@@ -91,15 +95,6 @@ var_dump($ordered);
                     <label for="inputCity" class="form-label">Miasto</label>
                     <input type="text" class="form-control" id="disabledTextInput">
                 </div>
-
-                <div class="col-md-2">
-                    <label for="inputZi Podsumowanie
-Dane zamawiającego
-Email
-Imie i nazwisko
-Adres
-Miasto 
-                <fieldset disabled>
             </form>
         </div>
     </div>
@@ -113,41 +108,42 @@ Miasto
                 <thead>
                     <tr>
                     <th scope="col">1</th>
-                    <th scope="col">LP</th>
                     <th scope="col">Produkt</th>
                     <th scope="col">Cena</th>
                     </tr>
                 </thead>
                 <tbody>
+                    <?php foreach($ordered as $product){ ?>
                     <tr>
                     <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
+                    <td><?php echo $product['name'] ?></td>
+                    <td><?php echo $product['price'] ?></td>
                     <td>@mdo</td>
                     </tr>
                     <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                    </tr>
-                    <tr>
-                    <th scope="row">3</th>
-                    <td colspan="2">Larry the Bird</td>
-                    <td>@twitter</td>
-                    </tr>
+                    <?php } ?>
                 </tbody>
                 <thead>
                     <tr>
                     <th scope="col"></th>
                     <th scope="col"></th>
                     <th scope="col">Status:</th>
-                    <th scope="col">W trakcie. Czas dostawy: 21:30</th>
+                    
+                     
+                    <th scope="col">
+                        <?php if($ordered[0]['delivery_date'] > time()){ 
+                            echo 'W trakcie. Czas dostawy: '.date('H:i:s', $ordered[0]['delivery_date']); 
+                        }else{
+                            echo 'Zrealizowano.';
+                        }
+                        ?>  
+                    </th>
+
                     </tr>
                 </thead>
                 </table>
                 <br>
-                <table class="table">
+                <!-- <table class="table">
                 <thead>
                     <tr>
                     <th scope="col">2</th>
@@ -183,7 +179,7 @@ Miasto
                     <th scope="col">W trakcie. Czas dostawy: 21:30</th>
                     </tr>
                 </thead>
-                </table>
+                </table> -->
         </div>
     </div>
 
