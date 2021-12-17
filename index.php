@@ -7,7 +7,7 @@ if($conn->connect_error){
     die("Connection failed: ".$conn->connect_error);
 }
 
-$q_dishes = "SELECT P.name as name, K.name as category, P.img_src, P.id
+$q_dishes = "SELECT P.name as name, K.name as category, P.img_src, P.id, P.description
     FROM Potrawy as P JOIN Kategorie as K 
     on P.category_id = K.id order by category";
 
@@ -60,7 +60,7 @@ while($row = mysqli_fetch_array($result_categories)){
                                 <img src=<?php echo 'img/'.$dish['img_src'] ?> alt="" class="card-img-top">
                                 <div class="card-body">
                                     <h5 class="card-title"> <?php echo $dish['name'] ?> </h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    <p class="card-text"><?php echo $dish['description'] ?></p>
                                     <button href="#" onclick="add_prod(<?php echo $dish['id'] ?>)" class="btn btn-primary">Dodaj do koszyka</button>
                                 </div>
                             </div>
@@ -201,6 +201,8 @@ while($row = mysqli_fetch_array($result_categories)){
 
 </div>
 
+<?php include('footer.php') ?>
+
 <script>
 
 var products = []
@@ -232,6 +234,8 @@ function to_cart(){
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+
 
 </body>
 </html>
