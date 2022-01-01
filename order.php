@@ -15,16 +15,6 @@ if($conn->connect_error){
 
 $current_time = time();
 
-// $q_data = "SELECT KL.*, Z.order_date, Z.delivery_date, P.name AS dish_name,
-// P.price, P.img_src
-// FROM Klienci AS KL 
-// JOIN Koszyki AS KO ON KL.id = KO.user_id
-// JOIN Zamowienia AS Z ON Z.cart_id = KO.id
-// JOIN koszyk_produkt AS KP ON KP.cart_id = KO.id
-// JOIN Potrawy AS P on P.id = KP.dish_id
-// WHERE KL.id = '{$_SESSION['user_id']}'";
-
-
 $q_data = "SELECT * FROM Klienci as KL 
 WHERE id = '{$_SESSION['user_id']}'";
 
@@ -84,7 +74,7 @@ while($row = mysqli_fetch_array($result)){
                 </div>
                 <div class="col-md-6">
                     <label for="inputPassword4" class="form-label">Imie i nazwisko</label>
-                    <input type="text" class="form-control" id="disabledTextInput" value=>
+                    <input type="text" class="form-control" id="disabledTextInput" value="<?php echo $client_data[0]['name']." ".$client_data[0]['surname'] ?>">
                 </div>
 
                 <div class="col-12">
@@ -93,7 +83,7 @@ while($row = mysqli_fetch_array($result)){
                 </div>
                 <div class="col-md-6">
                     <label for="inputCity" class="form-label">Miasto</label>
-                    <input type="text" class="form-control" id="disabledTextInput">
+                    <input type="text" class="form-control" id="disabledTextInput" value="<?php echo $client_data[0]['city'] ?>">
                 </div>
             </form>
         </div>
@@ -131,8 +121,9 @@ while($row = mysqli_fetch_array($result)){
                     
                      
                     <th scope="col">
-                        <?php if($ordered[0]['delivery_date'] > time()){ 
-                            echo 'W trakcie. Czas dostawy: '.date('H:i:s', $ordered[0]['delivery_date']); 
+                        <?php 
+                        if($ordered[0]['delivery_date'] > time()){ 
+                            echo 'W trakcie. Godzina dostawy: '.date('H:i:s', $ordered[0]['delivery_date']); 
                         }else{
                             echo 'Zrealizowano.';
                         }
@@ -143,43 +134,7 @@ while($row = mysqli_fetch_array($result)){
                 </thead>
                 </table>
                 <br>
-                <!-- <table class="table">
-                <thead>
-                    <tr>
-                    <th scope="col">2</th>
-                    <th scope="col">LP</th>
-                    <th scope="col">Produkt</th>
-                    <th scope="col">Cena</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    </tr>
-                    <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                    </tr>
-                    <tr>
-                    <th scope="row">3</th>
-                    <td colspan="2">Larry the Bird</td>
-                    <td>@twitter</td>
-                    </tr>
-                </tbody>
-                <thead>
-                    <tr>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                    <th scope="col">Status:</th>
-                    <th scope="col">W trakcie. Czas dostawy: 21:30</th>
-                    </tr>
-                </thead>
-                </table> -->
+                
         </div>
     </div>
 

@@ -23,8 +23,8 @@ $q= "SELECT id from Klienci WHERE email = '{$_POST['email']}'";
 $user_exists = $conn->query($q)->fetch_row();
 
 if($user_exists == NULL){
-    $q_client = "INSERT INTO Klienci (name, surname, email, city, postal_code)
-    VALUES ('{$name[0]}', '{$name[1]}', '{$_POST['email']}', '{$_POST['city']}', '{$_POST['postal_code']}')";
+    $q_client = "INSERT INTO Klienci (name, surname, email, address, city, postal_code)
+    VALUES ('{$name[0]}', '{$name[1]}', '{$_POST['email']}', '{$_POST['address']}', '{$_POST['city']}', '{$_POST['postal_code']}')";
 
     if (!$conn->query($q_client)){
         $_SESSION['db_error'] = $conn->error;
