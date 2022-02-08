@@ -1,0 +1,9 @@
+Backend
+
+    • Python 3.8 & Framework Django,
+    • Baza danych SQLite & wbudowana do frameworka Django biblioteka umożliwiająca komunikację między bazą danych, a skryptem.
+
+Frontend
+
+    • HTML5,
+    • Javascript & framework Vue.js do uinteraktywnienia witryny.
