@@ -2,7 +2,10 @@
 body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
-    background: gray;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.95)), url('img/wallpaper.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
   }
   
   .topnav {
@@ -25,6 +28,8 @@ body {
    margin: auto;
  }
  
+
+
  .bottomnav a{
     margin: auto;
     color: #f2f2f2;
@@ -54,7 +59,7 @@ body {
     
   }
 
-  .search-box{
+  .search-box{rgba(255, 255, 255, 0.3) !important;
     padding: 14px 1px;
   }
   
@@ -99,6 +104,7 @@ body {
   .product-card{
     margin-left: auto;
     margin-right: auto;
+    background: rgba(255, 255, 255, 0.8) !important;
   }
 
   .card{
@@ -109,18 +115,8 @@ body {
   .product-col{
     margin-bottom: 50px;
   }
-
-  /* .product-row {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-  }
-  .product-row > [class*='col-'] {
-     display: flex;
-     flex-direction: column;
-  } */
-
+  
+/* 
   .product-row {
     display: flex;
     flex-wrap: wrap;
@@ -128,7 +124,7 @@ body {
   .product-row > [class*='col-'] {
     display: flex;
     flex-direction: column;
-  }
+  } */
 
   .product-card{
     height: 100%;

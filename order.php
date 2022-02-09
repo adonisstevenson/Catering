@@ -26,8 +26,6 @@ while($row = mysqli_fetch_array($result)){
     $client_data[] = $row;
 }
 
-var_dump($client_data[0]);
-
 $q = "SELECT P.name, P.img_src, P.price, Z.delivery_date FROM Koszyki as KO
 JOIN Klienci AS KL on KL.id = KO.user_id
 JOIN koszyk_produkt AS KP ON KP.cart_id = KO.id
@@ -43,6 +41,11 @@ while($row = mysqli_fetch_array($result)){
     $ordered[] = $row;
 }
 
+foreach($ordered as $p){
+    echo 'sth';
+}
+
+$i = 1;
 
 ?>
 
@@ -79,7 +82,7 @@ while($row = mysqli_fetch_array($result)){
 
                 <div class="col-12">
                     <label for="inputAddress2" class="form-label">Adres</label>
-                    <input type="text" class="form-control" id="disabledTextInput">
+                    <input type="text" class="form-control" id="disabledTextInput" value="<?php echo $client_data[0]['address'] ?>">
                 </div>
                 <div class="col-md-6">
                     <label for="inputCity" class="form-label">Miasto</label>
@@ -105,13 +108,15 @@ while($row = mysqli_fetch_array($result)){
                 <tbody>
                     <?php foreach($ordered as $product){ ?>
                     <tr>
-                    <th scope="row">1</th>
+                    <th scope="row"><?php echo $i ?></th>
                     <td><?php echo $product['name'] ?></td>
                     <td><?php echo $product['price'] ?></td>
                     <td>@mdo</td>
                     </tr>
                     <tr>
-                    <?php } ?>
+                    <?php
+                    $i++;
+                    } ?>
                 </tbody>
                 <thead>
                     <tr>
@@ -139,6 +144,8 @@ while($row = mysqli_fetch_array($result)){
     </div>
 
 </div>
+
+<?php include('footer.php') ?>
 
 </body>
 

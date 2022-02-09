@@ -1,7 +1,7 @@
 
 <div class="topnav" id="myTopnav">
 <div class="container">
-<i class="fas fa-hamburger" style="font-size: 3rem; color: white; float:left; margin: 5px 15px 5px 5px;"></i>
+  <i class="fas fa-hamburger" style="font-size: 3rem; color: white; float:left; margin: 5px 15px 5px 5px;"></i>
   <a href="index.php" class="active">Strona główna</a>
   <a href="order.php">Zamówienia</a>
   <a href="#contact">Kontakt</a>

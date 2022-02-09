@@ -3,7 +3,7 @@
         <div class="row">
             <div id="#contact" class="col-lg-7 col-md-12" style="float: left;">
             <h2> Dane adresowe </h2>
-            <span style="color: white; line-height: 2.5;">
+            <span style="color: white; line-height: 3.5;">
                 <b> Adres: </b> 02-692 Warszawa, <br>
                 Ul. Plantowa 13 <br>
                 <b> Email: </b> pozdro600@catering.pl <br>

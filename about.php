@@ -51,7 +51,36 @@ while($row = mysqli_fetch_array($result_categories)){
 <div class="container" style="margin-top: 100px;">
 
     <div class="row">
-       About page
+       <div class="col-lg-7">
+           <div class="card">
+               <div class="card-header">
+                <h4>Kim jesteśmy?</h4>
+               </div>
+               <div class="card-body">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
+                    Ex, eveniet corrupti? 
+                    Incidunt ad, esse itaque, cum reiciendis nostrum voluptatum ipsum nesciunt commodi alias inventore excepturi numquam error magnam, sit quod.
+                    sit amet consectetur adipisicing elit. Aliquid explicabo labore voluptatem, voluptates placeat nostrum nam sint in necessitatibus velit, tempore error doloribus eligendi enim amet mollitia quae autem nisi.
+               </div>
+           </div>
+       </div>
+    </div>
+    <br>
+    <br>
+    <div class="row" style="text-align: right;">
+       <div class="col-lg-7 offset-lg-5">
+           <div class="card">
+               <div class="card-header">
+                <h4>Jakie dania serwujemy?</h4>
+               </div>
+               <div class="card-body">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
+                    Ex, eveniet corrupti? 
+                    Incidunt ad, esse itaque, cum reiciendis nostrum voluptatum ipsum nesciunt commodi alias inventore excepturi numquam error magnam, sit quod.
+                    sit amet consectetur adipisicing elit. Aliquid explicabo labore voluptatem, voluptates placeat nostrum nam sint in necessitatibus velit, tempore error doloribus eligendi enim amet mollitia quae autem nisi.
+               </div>
+           </div>
+       </div>
     </div>
 
 </div>
